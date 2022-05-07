@@ -1,7 +1,22 @@
-let current = 0;
+let current_image = 0;
 let current_color = "blue";
 const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 const max = 4;
+
+function changeR1Color(color, change) {
+  if (change) current_color = color;
+
+  $("#r1_image").attr("src", `images/buy_${color}.png`);
+}
+
+function nextImage(x) {
+  current_image += x;
+
+  if (current_image > max) current_image = 0;
+  else if (current_image < 0) current_image = max;
+
+  $("#action_image").attr("src", `images/design/r1_Action${current_image}.jpg`);
+}
 
 document.querySelectorAll("#changer").forEach((item) => {
   item.addEventListener("click", (event) => {
@@ -20,12 +35,6 @@ document.querySelectorAll("#changer").forEach((item) => {
     $("#r1_image").attr("src", `images/buy_${current_color}.png`);
   });
 });
-
-function changeR1Color(color, change) {
-  if (change) current_color = color;
-
-  $("#r1_image").attr("src", `images/buy_${color}.png`);
-}
 
 $.fn.isInViewport = function () {
   var elementTop = $(this).offset().top;
@@ -72,12 +81,3 @@ $(document).ready(async function () {
   $("#title").removeClass("slide-up");
   $("#title").addClass("slide-up");
 });
-
-function nextImage(x) {
-  current += x;
-
-  if (current > max) current = 0;
-  else if (current < 0) current = max;
-
-  $("#action_image").attr("src", `images/design/r1_Action${current}.jpg`);
-}
