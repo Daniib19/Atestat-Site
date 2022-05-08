@@ -4,6 +4,7 @@
 :root {
   --primary: rgb(72, 246, 130);
   --yamahaBlue: #0a2d81;
+  --navbarSize: calc(50px + 1.9rem);
 }
 
 ::selection {
@@ -36,10 +37,13 @@ img {
   display: flex;
   align-items: center;
   padding: 15px 25px 15px;
-  height: 50px;
   background-color: white;
   color: black;
   gap: 60px;
+  font-size: 2rem;
+  font-weight: bold;
+  line-height: 1;
+  height: 50px;
 }
 
 .header a {
@@ -54,7 +58,8 @@ img {
 .front-image-container {
   position: absolute;
   width: 100%;
-  height: 91vh;
+  /* height: calc(100vh - 50px); */
+  height: calc(100vh - var(--navbarSize));
   background-color: rgb(0, 0, 0);
 }
 
@@ -71,7 +76,9 @@ img {
   position: relative;
   z-index: 1;
   width: 22%;
-  height: 91vh;
+  /* height: 91vh; */
+  /* height: calc(100vh - 50px); */
+  height: calc(100vh - var(--navbarSize));
   background-color: rgba(0, 0, 0, 0.602);
   margin-left: auto;
   left: 80%;
@@ -209,20 +216,32 @@ iframe {
 
 .inner-container {
   display: flex;
+  flex-wrap: wrap;
   gap: 1em;
   align-items: center;
 }
 
 .inner-container .item {
   flex: 1;
+  min-width: 330px;
 }
 
 .stats-header {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   gap: 5em;
   padding: 20px;
   margin: 20px 0 20px;
+}
+
+.centered-h1 {
+  display: flex;
+  justify-content: center;
+  font-size: 4.5rem;
+  font-weight: bold;
+  margin: 40px 0 20px;
+  text-align: center;
 }
 
 .stat {
@@ -263,6 +282,7 @@ iframe {
 
 .card-container {
   display: flex;
+  flex-wrap: wrap;
   gap: 3em;
   justify-content: center;
 }
@@ -336,7 +356,7 @@ iframe {
   opacity: 0;
   font-weight: 500;
   transition: opacity 150ms ease-in-out, background-color 350ms ease;
-  transition-delay: 350ms;
+  /* transition-delay: 350ms; */
 }
 
 .span-2 {
@@ -345,6 +365,10 @@ iframe {
 
 .span-3 {
   grid-column: span 3;
+}
+
+.span-4 {
+  grid-column: span 4;
 }
 
 .stat-card-image {
@@ -371,6 +395,7 @@ iframe {
 
 .stats-container {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
   justify-items: center;
   text-align: center;
@@ -385,6 +410,7 @@ iframe {
 }
 
 .stats-box {
+  min-width: 450px;
   flex: 1;
 }
 
@@ -441,8 +467,8 @@ iframe {
 }
 
 .color-circle {
-  height: 16px;
-  width: 16px;
+  height: 18px;
+  width: 18px;
   cursor: pointer;
   border-radius: 100%;
   background-color: var(--yamahaBlue);
@@ -451,7 +477,7 @@ iframe {
 }
 
 .color-circle:hover {
-  transform: scale(1.2);
+  transform: scale(1.4);
 }
 
 .circle-black {
@@ -504,6 +530,16 @@ iframe {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.license-box {
+  display: inline-block;
+  position: relative;
+  background-color: #303030;
+  color: white;
+  padding: 4px 8px 4px;
+  margin-left: 10px;
+  border-radius: 5px;
 }
 
 ul {
@@ -570,9 +606,9 @@ ul b::after {
     width: 35%;
     transition: width 0.3s ease;
   }
-  .led-img {
+  /* .led-img {
     width: 100% !important;
-  }
+  } */
   .led-p {
     top: 5%;
   }
@@ -585,7 +621,17 @@ ul b::after {
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1200px) {
+  .stat-card {
+    grid-column: span 2;
+  }
+
+  .stat-card:last-child {
+    grid-column: span 4;
+  }
+}
+
+@media (max-width: 950px) {
   .buy-banner {
     opacity: 0;
     transition: opacity 0.2s ease;
@@ -594,5 +640,18 @@ ul b::after {
   iframe {
     width: 50%;
     height: 50%;
+  }
+
+  .stat-card {
+    grid-column: span 4;
+    transition: none;
+  }
+
+  .stat-card-body {
+    opacity: 1;
+  }
+
+  .stat-card:hover {
+    transform: scale(1);
   }
 }
